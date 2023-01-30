@@ -1,6 +1,4 @@
 --[[
-
-
 Rayfield Interface Suite
 by Sirius
 
@@ -8,8 +6,8 @@ shlex | Designing + Programming
 iRay  | Programming
 ]]
 
-local Release = "Beta 7R"
-local NotificationDuration = 6.5
+local Release = "Beta 8R"
+local NotificationDuration = 5.5
 local RayfieldFolder = "Rayfield"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"
 local ConfigurationExtension = ".rfld"
