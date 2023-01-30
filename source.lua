@@ -871,10 +871,14 @@ function Minimise()
 	Debounce = false
 end
 
-function RayfieldLibrary:CreateWindow(xSize, ySize, Settings)
+function RayfieldLibrary:CreateWindow(Settings)
 	local Passthrough = false
 	Topbar.Title.Text = Settings.Name
-	Main.Size = UDim2.new(0, xSize, 0, ySize) -- Original: UDim2.new(0, 450, 0, 260)
+        if Settings.xSize and Settings.ySize then
+               Main.Size = UDim2.new(0, Settings.xSize, 0, Settings.ySize) 
+        else
+	       Main.Size = UDim2.new(0, 450, 0, 260)
+        end
 	Main.Visible = true
 	Main.BackgroundTransparency = 1
 	LoadingFrame.Title.TextTransparency = 1
