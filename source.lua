@@ -1,22 +1,18 @@
 --[[
 
+
 Rayfield Interface Suite
 by Sirius
 
 shlex | Designing + Programming
 iRay  | Programming
-
 ]]
-
-
 
 local Release = "Beta 7R"
 local NotificationDuration = 6.5
 local RayfieldFolder = "Rayfield"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"
 local ConfigurationExtension = ".rfld"
-
-
 
 local RayfieldLibrary = {
 	Flags = {},
@@ -102,8 +98,6 @@ local RayfieldLibrary = {
 	}
 }
 
-
-
 -- Services
 
 local UserInputService = game:GetService("UserInputService")
@@ -116,18 +110,12 @@ local CoreGui = game:GetService("CoreGui")
 -- Interface Management
 local Rayfield = game:GetObjects("rbxassetid://10804731440")[1]
 
-
-
-if gethui then
-	Rayfield.Parent = gethui()
+if gethui then Rayfield.Parent = gethui()
 elseif syn.protect_gui then 
 	syn.protect_gui(Rayfield)
 	Rayfield.Parent = CoreGui
-elseif CoreGui:FindFirstChild("RobloxGui") then
-	Rayfield.Parent = CoreGui:FindFirstChild("RobloxGui")
-else
-	Rayfield.Parent = CoreGui
-end
+elseif CoreGui:FindFirstChild("RobloxGui") then Rayfield.Parent = CoreGui:FindFirstChild("RobloxGui")
+else Rayfield.Parent = CoreGui end
 
 if gethui then
 	for _, Interface in ipairs(gethui():GetChildren()) do
@@ -146,7 +134,6 @@ else
 end
 
 -- Object Variables
-
 local Camera = workspace.CurrentCamera
 local Main = Rayfield.Main
 local Topbar = Main.Topbar
@@ -157,9 +144,7 @@ local TabList = Main.TabList
 Rayfield.DisplayOrder = 100
 LoadingFrame.Version.Text = Release
 
-
 -- Variables
-
 local request = (syn and syn.request) or (http and http.request) or http_request
 local CFileName = nil
 local CEnabled = false
@@ -874,11 +859,7 @@ end
 function RayfieldLibrary:CreateWindow(Settings)
 	local Passthrough = false
 	Topbar.Title.Text = Settings.Name
-        if Settings.xSize and Settings.ySize then
-               Main.Size = UDim2.new(0, Settings.xSize, 0, Settings.ySize) 
-        else
-	       Main.Size = UDim2.new(0, 450, 0, 260)
-        end
+	Main.Size = UDim2.new(0, 450, 0, 260)
 	Main.Visible = true
 	Main.BackgroundTransparency = 1
 	LoadingFrame.Title.TextTransparency = 1
@@ -2267,7 +2248,13 @@ function RayfieldLibrary:CreateWindow(Settings)
 	TweenService:Create(LoadingFrame.Subtitle, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {TextTransparency = 1}):Play()
 	TweenService:Create(LoadingFrame.Version, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {TextTransparency = 1}):Play()
 	wait(0.2)
-	TweenService:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Size = UDim2.new(0, 500, 0, 475)}):Play()
+        MainWindowSize = nil
+	if Settings.xSize and Settings.ySize then
+               MainWindowSize = UDim2.new(0, Settings.xSize, 0, Settings.ySize) 
+        else
+	       MainWindowSize = UDim2.new(0, 500, 0, 475)
+        end
+        TweenService:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Size = MainWindowSize}):Play()
 	TweenService:Create(Main.Shadow.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {ImageTransparency = 0.4}):Play()
 
 	Topbar.BackgroundTransparency = 1
